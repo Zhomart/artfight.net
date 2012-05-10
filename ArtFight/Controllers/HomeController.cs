@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ArtFight.Models;
+using System.Configuration;
 
 namespace ArtFight.Controllers
 {
     public class HomeController : Controller
     {
         Context db = new Context();
+        public string CS { get; set; }
 
         //
         // GET: /Home/
@@ -21,6 +23,7 @@ namespace ArtFight.Controllers
             //                   orderby s.status, s.begin descending
             //                   select s;
             var competitions = new List<Competition>();
+            ViewBag.s = ConfigurationManager.ConnectionStrings["context"];
             return View(competitions);
         }
 
