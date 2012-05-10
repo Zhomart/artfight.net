@@ -13,7 +13,7 @@ namespace ArtFight.Controllers
 { 
     public class CompetitionController : Controller
     {
-        private ArtfightEntities db = new ArtfightEntities();
+        private Context db = new Context();
 
 
         //

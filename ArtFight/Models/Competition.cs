@@ -39,7 +39,7 @@ namespace ArtFight.Models
 
         public List<Participant> participants()
         {
-            var db = new ArtfightEntities();
+            var db = new Context();
             var ps = from s in db.Participants
                      where s.competition_id == this.id
                      orderby s.likes descending
@@ -49,7 +49,7 @@ namespace ArtFight.Models
 
         public bool participating(string username) 
         {
-            var db = new ArtfightEntities();
+            var db = new Context();
             var ps = from s in db.Participants
                      where s.competition_id == this.id
                      where s.username == username

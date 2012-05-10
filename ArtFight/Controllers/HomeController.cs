@@ -9,17 +9,18 @@ namespace ArtFight.Controllers
 {
     public class HomeController : Controller
     {
-        ArtfightEntities db = new ArtfightEntities();
+        Context db = new Context();
 
         //
         // GET: /Home/
 
         public ActionResult Index()
         {
-            var competitions = from s in db.Competitions
-                               where s.status > 0
-                               orderby s.status, s.begin descending
-                               select s;
+            //var competitions = from s in db.Competitions
+            //                   where s.status > 0
+            //                   orderby s.status, s.begin descending
+            //                   select s;
+            var competitions = new List<Competition>();
             return View(competitions);
         }
 

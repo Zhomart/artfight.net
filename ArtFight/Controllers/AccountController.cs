@@ -11,7 +11,7 @@ namespace ArtFight.Controllers
 {
     public class AccountController : Controller
     {
-        ArtfightEntities storeDB = new ArtfightEntities();
+        Context storeDB = new Context();
 
         //
         // GET: /Account/LogOn

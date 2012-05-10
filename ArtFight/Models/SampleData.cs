@@ -6,9 +6,9 @@ using System.Data.Entity;
 
 namespace ArtFight.Models
 {
-    public class SampleData : DropCreateDatabaseAlways<ArtfightEntities>
+    public class SampleData : DropCreateDatabaseAlways<Context>
     {
-        protected override void Seed(ArtfightEntities context)
+        protected override void Seed(Context context)
         {
             new List<Competition>
             {
