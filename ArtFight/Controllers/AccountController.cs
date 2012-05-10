@@ -9,9 +9,8 @@ using ArtFight.Models;
 
 namespace ArtFight.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : ApplicationController
     {
-        Context storeDB = new Context();
 
         //
         // GET: /Account/LogOn
@@ -29,10 +28,11 @@ namespace ArtFight.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(model.UserName, model.Password))
-                {
+                var client = Client.find_by_username_and_password(db, model.UserName, model.Password);
 
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                if (client != null)
+                {
+                    Response.SetCookie(new HttpCookie("current_user", client.username));
 
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -59,7 +59,7 @@ namespace ArtFight.Controllers
 
         public ActionResult LogOff()
         {
-            FormsAuthentication.SignOut();
+            Response.SetCookie(new HttpCookie("current_user", null));
 
             return RedirectToAction("Index", "Home");
         }
@@ -80,25 +80,23 @@ namespace ArtFight.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+                var client = Client.find_by_username(db, model.UserName);
 
-                if (createStatus == MembershipCreateStatus.Success)
+                if (client == null)
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
+                    // Attempt to register the user
+                    client = new Client { username = model.UserName, email = model.Email, first_name = model.FirstName, last_name = model.LastName, password = model.Password, role = "" };
 
-                    //add profile information
-                    var profile = Profile.GetProfile(model.UserName);
-                    profile.FirstName = model.FirstName;
-                    profile.LastName = model.LastName;
-                    profile.Save();
+                    db.Clients.Add(client);
+                    db.SaveChanges();
+
+                    Response.SetCookie(new HttpCookie("current_user", client.username));
 
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                    ModelState.AddModelError("", "Username is already taken.");
                 }
             }
 

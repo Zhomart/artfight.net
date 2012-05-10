@@ -34,11 +34,6 @@ namespace ArtFight.Models
         [Display(Name = "Description")]
         public string desciption { get; set; }
 
-        //[Required]
-        //[Display(Name = "Picture")]
-        //[UIHint("Picture XD")]
-        //public string picture_url { get; set; }
-
         [ScaffoldColumn(false)]
         public int competition_id { get; set; }
     }

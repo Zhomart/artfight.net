@@ -22,8 +22,7 @@ namespace ArtFight.Models
 
 
         // whom commented?
-        //public int participand_id { get; set; }
-        public Participant participant { get; set; }
+        public int participand_id { get; set; }
 
         
     }

@@ -27,16 +27,6 @@ namespace ArtFight.Models
         [ScaffoldColumn(false)]
         public string owner_username { get; set; }
 
-        // who participates
-        //public List<Participant> participants { get { 
-        //    var db = new ArtfightEntities();
-        //    var ps = from s in db.Participants
-        //             where s.competition_id == this.id
-        //             orderby s.likes descending
-        //             select s;
-        //    return ps.ToList();
-        //} }
-
         public List<Participant> participants()
         {
             var db = new Context();
@@ -56,7 +46,6 @@ namespace ArtFight.Models
                      select s;
             return ps.Count() > 0;
         }
-
 
         // other codes
 

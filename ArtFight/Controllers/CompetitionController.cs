@@ -11,11 +11,8 @@ using System.IO;
 
 namespace ArtFight.Controllers
 { 
-    public class CompetitionController : Controller
+    public class CompetitionController : ApplicationController
     {
-        private Context db = new Context();
-
-
         //
         // GET: /Competition/
         public ActionResult Participate(int id)

@@ -10,6 +10,13 @@ namespace ArtFight.Models
     {
         protected override void Seed(Context context)
         {
+            new List<Client>
+            {
+                new Client { username = "admin", password = "admin", email = "admin@gmail.com", role = "admin" },
+                new Client { username = "moder", password = "moder", email = "moder@gmail.com", role = "moder" },
+                new Client { username = "user", password = "user", email = "user@gmail.com", role = "" }
+            }.ForEach(a => context.Clients.Add(a));
+
             new List<Competition>
             {
                 new Competition { title="Anime art", begin = DateTime.Now, end = DateTime.Now.Add(TimeSpan.FromHours(5)), description = "blablabla", status = 1, owner_username="miku" },

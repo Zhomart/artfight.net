@@ -10,6 +10,7 @@ namespace ArtFight.Models
     {
         public DbSet<Competition> Competitions { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Client> Clients { get; set; }
         public DbSet<Participant> Participants { get; set; }
 
     }

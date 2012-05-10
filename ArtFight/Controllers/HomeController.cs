@@ -8,10 +8,8 @@ using System.Configuration;
 
 namespace ArtFight.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ApplicationController
     {
-        Context db = new Context();
-        public string CS { get; set; }
 
         //
         // GET: /Home/
