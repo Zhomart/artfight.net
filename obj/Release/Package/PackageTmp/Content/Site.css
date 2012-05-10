@@ -1,0 +1,57 @@
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+
+.competition {
+	padding: 10px 15px 10px 15px;
+	background-color: #f2f2eb;
+	border-radius: 7px;
+}
+
+.competition h2 {
+	margin-bottom:5px;
+}
+
+.competition .date, .competition .info{
+	margin-top:5px;
+	float: left;
+	width: 100%;
+}
+
+.participants {
+	
+}
+
+.participants .participant {
+	float:left;
+	margin: 10px 0 0 20px;
+	padding: 5px;
+	width: 200px;
+	border:1px solid #aaa;
+}

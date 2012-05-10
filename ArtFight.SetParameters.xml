@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <setParameter name="IIS Web Application Name" value="http://artfight.somee.com" />
-  <setParameter name="context-Web.config Connection String" value="Server=92.46.55.99; Database=artfight; Uid=artfight; Pwd=artfight123;" />
-</parameters>

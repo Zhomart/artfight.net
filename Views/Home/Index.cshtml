@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ArtFight.Models.Competition>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>@Html.ActionLink("Go to the List of Running Competitions", "Index", "Competition")</p>
+
+
+<h3>Latest Competitions</h3>
+<p>cs: @ViewBag.s </p>
+<table>
+    <tr>
+        <th>title</th>
+        <th>desc</th>
+        <th>begin</th>
+        <th>end</th>
+        <th>status</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.title, "Details", "Competition", new { id = item.id }, new {})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.begin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.end)
+        </td>
+         <td>
+            @Html.DisplayFor(modelItem => item.status_name)
+        </td>
+    </tr>
+}
+
+</table>

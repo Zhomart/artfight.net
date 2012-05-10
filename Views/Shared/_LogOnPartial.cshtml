@@ -1,0 +1,16 @@
+﻿@if(Request.IsAuthenticated) {
+    if (Roles.IsUserInRole(User.Identity.Name, "moderator")) { 
+        <text>
+            <li>@Html.ActionLink("Competitions Manager", "My", "Competition")</li>
+        </text>
+    }
+    <text>
+        <li><a href="#">Welcome <strong>@User.Identity.Name</strong>!</a></li>
+        <li><a href="/Account/LogOff">Sign out</a></li>
+    </text>
+}
+else {
+    <text>
+        <li><a href="/Account/LogOn">Sign in</a></li>
+    </text>
+}
