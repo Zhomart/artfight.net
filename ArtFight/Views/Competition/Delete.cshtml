@@ -1,0 +1,54 @@
+﻿@model ArtFight.Models.Competition
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+@if (ViewBag.error != null)
+{
+    <span class="field-validation-error" data-valmsg-for="end" data-valmsg-replace="true">@ViewBag.error</span>
+}
+
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Competition</legend>
+
+    <div class="display-label">title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.title)
+    </div>
+
+    <div class="display-label">description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">begin</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.begin)
+    </div>
+
+    <div class="display-label">end</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.end)
+    </div>
+
+    <div class="display-label">status</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.status)
+    </div>
+
+    <div class="display-label">status_name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.status_name)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

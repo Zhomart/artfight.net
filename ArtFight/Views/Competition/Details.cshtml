@@ -1,0 +1,70 @@
+﻿@model ArtFight.Models.Competition
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@if (Request.IsAuthenticated && !Model.participating(User.Identity.Name))
+{
+    <p>
+        @Html.ActionLink("Participate", "Participate", new { id = Model.id })
+    </p>
+}
+
+<h2>@Html.DisplayFor(model => model.title)</h2>
+
+<fieldset>
+    <legend>Competition</legend>
+
+    <div class="display-label">title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.title)
+    </div>
+
+    <div class="display-label">description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">begin</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.begin)
+    </div>
+
+    <div class="display-label">end</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.end)
+    </div>
+
+    <div class="display-label">status</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.status)
+    </div>
+
+    <div class="display-label">status_name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.status_name)
+    </div>
+</fieldset>
+<p>
+    @if(Model.owner_username == User.Identity.Name){
+        <text>@Html.ActionLink("Edit", "Edit", new { id=Model.id }) |</text>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div>
+    @foreach (var p in Model.participants()) {
+         @: <div class="participants">
+         @:       <div class="participant">
+         @:         <b style="font-size:19px">1.</b>&nbsp;
+         @:         <i>@p.username</i>
+         @:         <div style="text-align:center;">
+         @:           <a href="/@p.picture_url"><img alt="1323441868310" src="/@p.picture_url" width="128"/></a>
+         @:         </div>
+         @:         likes: @p.likes
+         @:       </div>
+         @:     <div style="clear:both"></div>
+         @: </div>
+    }
+</div>

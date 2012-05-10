@@ -1,0 +1,321 @@
+#header, #pictures {
+	width: 100%;
+	color: #787878;
+	text-shadow: #fff 1px 1px 1px;
+}
+#header {
+	height: 40px;
+	line-height: 40px;
+	background: #f2f2eb url(../../../../../../../../Documents/private/work/design/Artfight/Artfight/markup 2/img/header.png) repeat-x;
+}
+.logo {
+	text-align: center;
+}
+.logo a, .logo img {
+	display: block;
+}
+
+/* @group navigation */
+
+#nav ul {
+	display: block;
+	height: inherit;
+	margin: 0;
+	overflow: hidden;
+}
+
+#nav li {
+	display: block;
+	float: left;
+	margin: 0;
+	margin-right: 10px;
+	margin-top: 5px;
+	height: inherit;
+	width: auto;
+}
+
+#nav li a {
+	display: block;
+	line-height: 20px;
+	height: 20px;
+	padding: 5px 10px;
+}
+
+#nav li:hover {
+
+}
+
+#nav .current {
+	color: #fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(72,79,82)),
+    color-stop(0.5, rgb(103,111,115)),
+    color-stop(1, rgb(72,79,82))
+);
+	background: -moz-linear-gradient(
+    center bottom,
+    rgb(72,79,82) 0%,
+    rgb(103,111,115) 50%,
+    rgb(72,79,82) 100%
+);
+	text-shadow: #495053 1px 1px 1px;
+}
+
+/* @end */
+
+/* @group pictures stripe */
+
+#pictures {
+	background: #d7d7d7 url(../../../../../../../../Documents/private/work/design/Artfight/Artfight/markup 2/img/header-divider.png) repeat-x;
+	border-bottom: 1px solid #9d9d9c;
+}
+#pic-nav {
+	height: 60px;
+	overflow: hidden;
+}
+#pic-nav ul {
+	overflow: hidden;
+	display: block;
+	float: left;
+}
+#pic-nav ul li {
+	display: block;
+	float: left;
+	margin: 0;
+	width: 60px;
+	height: 60px;
+}
+#pic-nav ul li:hover {
+	background: url(../../../../../../../../Documents/private/work/design/Artfight/Artfight/markup 2/img/footer-nav.png) no-repeat;
+}
+
+#pic-nav ul li a {
+	padding: 10px;
+	display: block;
+}
+#pic-nav ul li img {
+	display: block;
+	width: 40px;
+	height: 40px;
+	-webkit-box-shadow: 0px 1px 3px #4d4d4d;
+	-moz-box-shadow: 0px 1px 3px #4d4d4d;
+	box-shadow: 0px 1px 3px #4d4d4d;
+}
+#pic-nav ul li.current {
+	background: url(../../../../../../../../Documents/private/work/design/Artfight/Artfight/markup 2/img/footer-nav-dark.png) no-repeat;
+}
+
+.arrow {
+	display: block;
+	float: left;
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	overflow: hidden;
+	text-align: center;
+	text-decoration: none;
+	color: #787878;
+	text-shadow: #fff 0 1px 1px;
+	background: none;
+	border: none;
+	margin:0;
+}
+
+.arrow:hover {
+	background: url(../../../../../../../../Documents/private/work/design/Artfight/Artfight/markup 2/img/footer-nav.png) no-repeat;
+}
+#show-other {
+	height: 20px;
+	width: 100%;
+	text-shadow: #fff 0 1px 1px;
+	color: #787878;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#show-other a {
+	text-decoration: none;
+}
+.full-view {
+	height: auto !important; 
+	position: relative;
+}
+
+/* @end */
+
+/* Temporary element */
+#search-field {
+	background: #fff url(../img/magnifying-glass-12x12.png) no-repeat 202px center;
+	width: 191px;
+	border: none;
+	padding: 0 22px 0 5px;
+	margin-top: 10px;
+	height: 20px;
+}
+
+#body {
+	padding: 20px 0 100px;
+}
+
+/* @group picture */
+
+#picture {
+	background-color: #f0f0f0;
+	margin: 0;
+	padding: 10px;
+}
+#picture img {
+	width: 100%;
+}
+#picture blockquote {
+	border: none;
+	padding: 0;
+}
+#picture p.author {
+	text-align: right;
+	border-top: 1px solid #cacaca;
+	padding-top: 4px;
+}
+
+#fav {
+	display: block;
+	background: url(../../../../../../../../Documents/private/work/design/Artfight/Artfight/markup 2/img/hearts-sprite.png) 0 -26px;
+	width: 24px;
+	height: 21px;
+	text-indent: -9999px;
+	overflow: hidden;
+	float: right;
+	z-index: 1;
+	top: 10px;
+	right: 5px;
+	margin-right: 5px;
+	margin-bottom: -21px;
+}
+#fav:active {
+	background-position: 0 0;
+	top: 11px;
+}
+#fav:hover {
+	background-position: 0 0;
+}
+
+/* @end */
+
+/* @group comments */
+
+#comments {
+	padding-left: 10px;
+	color: #919191;
+}
+
+ol.comments {
+	margin: 0;
+}
+
+ol.comments li {
+	margin: 0 0 20px;
+}
+
+ol.comments ol.comments {
+	margin-left: 20px;
+}
+
+ol.comments ul.meta {
+	display: block;
+	height: 20px;
+	color: #c0c0c0;
+	margin: 0px;
+}
+
+ol.comments ul.meta > li {
+	display: block;
+	float: left;
+	margin: 0px;
+	padding-right: 20px;
+}
+
+ol.comments ul.meta > li:first-child {
+	padding-right: 10px;
+}
+
+ol.comments ul.meta img {
+	width: 20px;
+	height: 20px;
+	display: block;
+	float: left;
+}
+ol.comments .body p {
+	margin: 0;
+}
+ol.comments .body {
+	margin-bottom: 20px;
+}
+
+ol.comments .body .answer-control {
+	text-align: right;
+	border-top: 1px solid #aaa;
+	margin-top: 5px;
+	padding-top: 4px;
+}
+
+ol.comments .body .answer-control a {
+	padding: 5px;
+	background-color: #f0f0f0;
+}
+
+/* Form */
+#write-comment fieldset {
+	border: none;
+	padding: 0;
+}
+#write-comment legend {
+	padding: 0;
+}
+#write-comment textarea {
+	width: 518px;
+}
+#write-comment button {
+	float: right;
+}
+
+/* @end */
+
+
+/* @group "Comment" button */
+
+.button-special {
+	display: block;
+	overflow: hidden;
+	background: url(../../../../../../../../Documents/private/work/design/Artfight/Artfight/markup 2/img/button.png) no-repeat 0 0;
+	height: 32px;
+	width: 100px;
+	margin-bottom: 18px;
+	text-indent: -9999px;
+	border: none;
+}
+
+.button-special:hover {
+	/*background-position: 0 -35px;*/
+}
+
+.button-special:active {
+	background-position: 0 -70px;
+}
+
+/* @end */
+.hidden {
+	visibility: hidden;
+}
+.offset {
+	/*margin-left: -60px !important;*/
+}
+.full-view .offset {
+	margin-left: 0 !important;
+	visibility: visible !important;
+}

@@ -1,0 +1,126 @@
+body {
+	font: 13px/20px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	color: #252525;
+}
+
+p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset, input, button, textarea, select {
+	margin: 0 0 20px;
+}
+
+/* @group Links */
+
+a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:active {
+	top: 1px;
+}
+
+a:focus {
+	outline: 1px dotted #252525;
+}
+
+/* @end */
+
+hr {
+	clear: both;
+	height: 0;
+	border-top: 1px solid #cacaca;
+}
+
+/* @group Headings */
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	font-style: normal;
+}
+
+h1 {
+	font-size: 30px;
+	line-height: 40px;
+	margin-bottom: 0;
+}
+
+h2 {
+	font-size: 24px;
+	line-height: 40px;
+	margin-bottom: 0;
+}
+
+h3, h4, h5, h6 {
+	font-size: 18px;
+	margin: 10px0
+;
+
+}
+
+/* @end */
+
+ol {
+	list-style: decimal;
+}
+
+ul {
+	list-style: disc;
+}
+
+li, dd {
+	margin-left: 20px;
+}
+
+ul li li {
+	list-style-type: circle;
+}
+
+dt {
+	font-weight: bold;
+}
+
+blockquote, q {
+	border-left: 1px solid #ccc;
+	padding-left: 19px;
+}
+
+cite {
+	color: #919191;
+}
+
+table {
+	width: 100%;
+}
+
+table caption {
+	text-align: left;
+	font-style: italic;
+}
+
+thead {
+	background-color: #eaeaea;
+}
+
+th, td {
+	border-bottom: 1px solid #eaeaea;
+	padding: 10px 10px 9px;
+	text-align: left;
+}
+
+.notification {
+	padding: 10px;
+	background-color: #252525;
+	color: #fff;
+}
+
+.error {
+	color: #D50911;
+}
+
+.success {
+	color: #69A861;
+}
