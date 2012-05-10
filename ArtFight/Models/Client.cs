@@ -35,7 +35,7 @@ namespace ArtFight.Models
         }
 
         public string fullname() {
-            if (first_name.Length == 0 && last_name.Length == 0) return username;
+            if ((first_name + " " + last_name).Length == 0) return username;
             return first_name + " " + last_name;  
         }
 
