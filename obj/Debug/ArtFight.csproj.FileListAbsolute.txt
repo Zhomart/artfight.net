@@ -5,3 +5,9 @@ C:\WebSites\artfight.net\ArtFight\bin\EntityFramework.xml
 C:\WebSites\artfight.net\ArtFight\obj\Debug\ResolveAssemblyReference.cache
 C:\WebSites\artfight.net\ArtFight\obj\Debug\ArtFight.dll
 C:\WebSites\artfight.net\ArtFight\obj\Debug\ArtFight.pdb
+C:\WebSites\a\artfight\bin\ArtFight.dll
+C:\WebSites\a\artfight\bin\ArtFight.pdb
+C:\WebSites\a\artfight\bin\EntityFramework.xml
+C:\WebSites\a\artfight\obj\Debug\ResolveAssemblyReference.cache
+C:\WebSites\a\artfight\obj\Debug\ArtFight.dll
+C:\WebSites\a\artfight\obj\Debug\ArtFight.pdb
