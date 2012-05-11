@@ -31,7 +31,7 @@ namespace ArtFight
 
         protected void Application_Start()
         {
-            System.Data.Entity.Database.SetInitializer(new ArtFight.Models.SampleData());
+            //System.Data.Entity.Database.SetInitializer(new ArtFight.Models.SampleData());
 
             AreaRegistration.RegisterAllAreas();
 
