@@ -4,7 +4,7 @@
     ViewBag.Title = "Participants";
 }
 <div id="picture" class="grid-5">
-    <img alt="@Model.description" src="@Model.picture_url" />
+    <a href="@Model.picture_url"><img alt="@Model.description" src="@Model.picture_url" /></a>
     <blockquote>
         <p>@Model.description</p>
         <p class="author">
