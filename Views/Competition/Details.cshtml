@@ -1,0 +1,66 @@
+﻿@model ArtFight.Models.Competition
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@if (true || ViewBag.is_authorized && !Model.participating(ViewBag.current_client.username))
+{
+    @: <br/><br/> <p> 
+    @:    <button class="link" href="/Competition/Participate/@Model.id">Participate</button>
+    @: </p>
+}
+
+@Html.ActionLink("Back to List", "Index")
+
+
+<h2>@Html.DisplayFor(model => model.title)</h2>
+
+
+<fieldset>
+    <legend>Competition</legend>
+
+    <p>
+        <b>Description:</b>
+        @Html.DisplayFor(model => model.description)
+    </p>
+
+    <p>
+        <b>Start:</b>    
+        @Html.DisplayFor(model => model.begin)
+    </p>
+
+    <p>
+        <b>End:</b>
+    
+        @Html.DisplayFor(model => model.end)
+    </p>    
+
+    <p>
+        <b>Status Name:</b>    
+        @Html.DisplayFor(model => model.status_name)
+    </p>
+</fieldset>
+<p>
+    @if(Model.owner_username == User.Identity.Name){
+        <text>@Html.ActionLink("Edit", "Edit", new { id=Model.id }) |</text>
+    }
+</p>
+
+@{
+    var ps = Model.participants();
+}
+
+<div class="participants">
+    @for (int i=0; i<ps.Count; i++) {
+         @:       <div class="participant">
+         @:         <b style="font-size:19px">@(i+1).</b>&nbsp;
+         @:         <i>@Html.ActionLink(@ArtFight.Models.Client.find_by_username(ps[i].username).fullname(), "Participants", new { id = Model.id, participant_id = ps[i].id })</i>
+         @:         <div style="text-align:center;">
+         @:           <a href="/Competition/Participants/@ps[i].competition_id?participant_id=@ps[i].id"> <img alt="1323441868310" src="/@ps[i].picture_url" width="128"/> </a>
+         @:         </div>
+         @:         likes: @ps[i].likes
+         @:       </div>
+    }
+    <div style="clear:both"></div>
+</div>

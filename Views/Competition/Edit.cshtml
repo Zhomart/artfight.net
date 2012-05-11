@@ -1,0 +1,90 @@
+﻿@model ArtFight.Models.Competition
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@if (ViewBag.error != null)
+{
+    <span class="field-validation-error" data-valmsg-for="end" data-valmsg-replace="true">@ViewBag.error</span>
+}
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Competition</legend>
+
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.owner_username)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.title)
+            @Html.ValidationMessageFor(model => model.title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.begin)
+        </div>
+        <div class="editor-field">
+            <input type="text" value="@Model.begin" readonly="readonly" name="begin" id="begin" class="hasDatetimePicker"/>
+            @Html.ValidationMessageFor(model => model.begin)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.end)
+        </div>
+        <div class="editor-field">
+            <input type="text" value="@Model.end" readonly="readonly" name="end" id="end" class="hasDatetimePicker"/>
+            @Html.ValidationMessageFor(model => model.end)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.status)
+        </div>
+        <div class="editor-field">
+            <select name="status" id="status">
+                @for (int i = 0; i < ArtFight.Models.Competition.statuses.Count(); ++i )
+                {
+                    <option value="@i">@ArtFight.Models.Competition.statuses[i]</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.status)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<script>
+    $(function () {
+        //11.05.2012 10:37:21
+
+        $(".hasDatetimePicker").datetimepicker({
+            timeFormat: 'hh:mm:ss',
+            dateFormat: 'dd.mm.yy'
+
+        });
+    });
+</script>
+
+<div>
+    @Html.ActionLink("Back to List", "My")
+</div>

@@ -1,0 +1,7 @@
+D:\Web Sites\artfight\ArtFight\bin\ArtFight.dll
+D:\Web Sites\artfight\ArtFight\bin\ArtFight.pdb
+D:\Web Sites\artfight\ArtFight\bin\EntityFramework.dll
+D:\Web Sites\artfight\ArtFight\bin\EntityFramework.xml
+D:\Web Sites\artfight\ArtFight\obj\Debug\ResolveAssemblyReference.cache
+D:\Web Sites\artfight\ArtFight\obj\Debug\ArtFight.dll
+D:\Web Sites\artfight\ArtFight\obj\Debug\ArtFight.pdb
