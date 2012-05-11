@@ -18,7 +18,7 @@ namespace ArtFight.Models
         public string text { get; set; }
 
         // Who commented
-        //public int identity_id { get; set; }
+        public int client_id { get; set; }
 
 
         // whom commented?
