@@ -16,12 +16,11 @@ namespace ArtFight.Controllers
 
         public ActionResult Index()
         {
-            //var competitions = from s in db.Competitions
-            //                   where s.status > 0
-            //                   orderby s.status, s.begin descending
-            //                   select s;
-            var competitions = new List<Competition>();
-            ViewBag.s = ConfigurationManager.ConnectionStrings["context"];
+            var competitions = (from s in db.Competitions
+                               where s.status > 0
+                               orderby s.status, s.begin descending
+                               select s).Take(6);
+
             return View(competitions);
         }
 
