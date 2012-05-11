@@ -10,12 +10,12 @@
     <title>Error</title>
 </head>
 <body>
-    <h2>
+    <h2 style="color: #0A0">
         Sorry, an error occurred while processing your request.
     </h2>
     <p>Controller Name: @Model.ControllerName</p>
     <p>Action Name : @Model.ActionName</p>
     <p>Message: @Model.Exception.Message</p>
-    <p>Excetion: @Model.Exception.StackTrace</p>
+    <p><pre>Excetion: @Model.Exception.StackTrace</pre></p>
 </body>
 </html>

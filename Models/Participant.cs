@@ -27,9 +27,6 @@ namespace ArtFight.Models
         // Who participates
         public string username { get; set; }
 
-        // Comments commented to this participant
-        // public List<Comment> comments { get; set; }
-
     }
 
     public class ParticipateModel
