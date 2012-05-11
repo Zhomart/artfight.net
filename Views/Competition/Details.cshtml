@@ -4,9 +4,11 @@
     ViewBag.Title = "Details";
 }
 
-@if (true || ViewBag.is_authorized && !Model.participating(ViewBag.current_client.username))
+<br/>
+
+@if (ViewBag.is_authorized && !Model.participating(ViewBag.current_client.username))
 {
-    @: <br/><br/> <p> 
+    @: <br/> <p> 
     @:    <button class="link" href="/Competition/Participate/@Model.id">Participate</button>
     @: </p>
 }
@@ -57,7 +59,8 @@
          @:         <b style="font-size:19px">@(i+1).</b>&nbsp;
          @:         <i>@Html.ActionLink(@ArtFight.Models.Client.find_by_username(ps[i].username).fullname(), "Participants", new { id = Model.id, participant_id = ps[i].id })</i>
          @:         <div style="text-align:center;">
-         @:           <a href="/Competition/Participants/@ps[i].competition_id?participant_id=@ps[i].id"> <img alt="1323441868310" src="/@ps[i].picture_url" width="128"/> </a>
+         @:           <a href="/Competition/Participants/@ps[i].competition_id?participant_id=@ps[i].id">
+         @:               <img alt="@ps[i].title()" src="@ps[i].picture_url" width="128"/> </a>
          @:         </div>
          @:         likes: @ps[i].likes
          @:       </div>

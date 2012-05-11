@@ -26,6 +26,18 @@ namespace ArtFight.Models
         public string first_name { get; set; }
         public string last_name { get; set; }
 
+        public static Client find_by_id(int id)
+        {
+            var db = new Context();
+
+            var client = (from s in db.Clients
+                          where s.id == id
+                          select s).FirstOrDefault();
+
+            return client;
+        }
+
+
         public static Client find_by_username(string username)
         {
             var db = new Context();

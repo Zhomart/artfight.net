@@ -24,6 +24,11 @@ namespace ArtFight.Models
         // whom commented?
         public int participand_id { get; set; }
 
+
+        public Client client()
+        {
+            return Client.find_by_id(client_id);
+        }
         
     }
 }

@@ -57,20 +57,25 @@
                     @foreach (ArtFight.Models.Participant p in ViewBag.vip_participants)
                     {
                         <li><a href="/Competition/Participants/@p.competition_id?participant_id=@p.id">
-                            <img alt="@p.title()" title="@p.title()" src="/@p.picture_url" width="80px"/></a>
+                            <img alt="@p.title()" title="@p.title()" src="@p.picture_url" width="80px"/></a>
                         </li>
                     }
                 </ul>
             </div>
-            <div class="grid-1">
-            </div>
-            <div class="clear">
-            </div>
+            <div class="grid-1"></div>
+            <div class="clear"></div>
         </div>
     </div>
     <div id="body" class="container">
-        Now: <span>@DateTime.Now</span>
         @RenderBody()
+    </div>
+    <div style="border:1px solid #Fff; min-height:60px;">
+        <div style="width:164px; margin:10px auto; border: 1px solid #aaa">
+            <span style="padding:2px 5px;">Now: @DateTime.Now</span>
+        </div>
+        <div style="width:430px; margin:10px auto; text-align: center; border: 1px solid #ccc">
+            Made by: <br/>Nursultan Yerezhepov & Serik Beketayev & Zhomart Mukhemejanov<br/>May, 2012
+        </div>
     </div>
 </body>
 </html>

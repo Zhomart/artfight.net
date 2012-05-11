@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using ArtFight.Models;
 using System.IO;
+using System.Net;
+using System.Collections.Specialized;
 
 
 namespace ArtFight.Controllers
@@ -36,6 +38,68 @@ namespace ArtFight.Controllers
             return View(p);
         }
 
+        public static void HttpUploadFile(string url, Stream input, string paramName, string fileName, string contentType, NameValueCollection nvc)
+        {
+            string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
+            byte[] boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
+
+            HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
+            wr.ContentType = "multipart/form-data; boundary=" + boundary;
+            wr.Method = "POST";
+            wr.KeepAlive = true;
+            wr.Credentials = System.Net.CredentialCache.DefaultCredentials;
+
+            Stream rs = wr.GetRequestStream();
+
+            string formdataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}";
+            foreach (string key in nvc.Keys)
+            {
+                rs.Write(boundarybytes, 0, boundarybytes.Length);
+                string formitem = string.Format(formdataTemplate, key, nvc[key]);
+                byte[] formitembytes = System.Text.Encoding.UTF8.GetBytes(formitem);
+                rs.Write(formitembytes, 0, formitembytes.Length);
+            }
+            rs.Write(boundarybytes, 0, boundarybytes.Length);
+
+            string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: {2}\r\n\r\n";
+            string header = string.Format(headerTemplate, paramName, fileName, contentType);
+            byte[] headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+            rs.Write(headerbytes, 0, headerbytes.Length);
+
+            byte[] buffer = new byte[4096];
+            int bytesRead = 0;
+            while ((bytesRead = input.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                rs.Write(buffer, 0, bytesRead);
+            }
+
+            byte[] trailer = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
+            rs.Write(trailer, 0, trailer.Length);
+            rs.Close();
+
+            WebResponse wresp = null;
+            try
+            {
+                wresp = wr.GetResponse();
+                Stream stream2 = wresp.GetResponseStream();
+                StreamReader reader2 = new StreamReader(stream2);
+                //throw new Exception(string.Format("File uploaded, server response is: {0}", reader2.ReadToEnd()));
+            }
+            catch (Exception ex)
+            {
+                if (wresp != null)
+                {
+                    wresp.Close();
+                    wresp = null;
+                }
+                throw new Exception("Error uploading file", ex);
+            }
+            finally
+            {
+                wr = null;
+            }
+        }
+
         //
         // POST: /Competition/Create
         [HttpPost]
@@ -57,11 +121,15 @@ namespace ArtFight.Controllers
 
                 // extract only the extension, and generate random string with length 24
                 var fileName = Helper.RandomString(24) + Path.GetExtension(picture.FileName);
-                // store the picture inside ~/Public/participant_pictures folder
-                var path = Path.Combine(Server.MapPath("~/Public/participant_pictures"), fileName);
-                picture.SaveAs(path);
 
-                var p = new Participant { description = pm.desciption, likes = 0, picture_url = "Public/participant_pictures/" + fileName, username = username, competition_id = c.id };
+                string picture_host = "http://92.46.55.99:9008";
+                // saving picture on other server
+                NameValueCollection nvc = new NameValueCollection();
+                nvc.Add("id", "TTR");
+                nvc.Add("btn-submit-photo", "Upload");
+                HttpUploadFile(picture_host + "/upload.php", picture.InputStream, "file", fileName, picture.ContentType, nvc);
+
+                var p = new Participant { description = pm.desciption, likes = 0, picture_url = picture_host + "/uploads/" + fileName, username = username, competition_id = c.id };
                 
                 db.Participants.Add(p);
                 db.SaveChanges();
@@ -87,6 +155,13 @@ namespace ArtFight.Controllers
 
             object a = Session[competition.id + "-" + participant.id];
 
+            var comments = from s in db.Comments
+                           where s.participand_id == participant_id
+                           orderby s.created_at descending
+                           select s;
+
+            @ViewBag.comments = comments;
+
             if (a == null)
             {
                 @ViewBag.disabled = "";
@@ -96,6 +171,28 @@ namespace ArtFight.Controllers
             }
 
             return View(participant);
+        }
+
+
+        [HttpPost]
+        public string Comment(int id)
+        {
+            var c = db.Competitions.Find(id);
+
+            var text = Request.Params["text"];
+
+            int participant_id = int.Parse(Request.Params["participant_id"]);
+
+            var participant = db.Participants.Find(participant_id);
+
+            var client = Client.current_user();
+
+            var comment = new Comment { created_at = DateTime.Now, participand_id = participant.id, text = text, client_id = client.id };
+
+            db.Comments.Add(comment);
+            db.SaveChanges();
+
+            return "ok";
         }
 
         [HttpPost]

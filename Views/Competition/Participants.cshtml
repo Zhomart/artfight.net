@@ -4,61 +4,46 @@
     ViewBag.Title = "Participants";
 }
 <div id="picture" class="grid-5">
-    <img alt="@Model.description" src="/@Model.picture_url" />
+    <img alt="@Model.description" src="@Model.picture_url" />
     <blockquote>
         <p>@Model.description</p>
         <p class="author">
             <cite>&mdash; @Model.username</cite></p>
     </blockquote>
 </div>
-
 <input type="hidden" id="competition_id" value="@Model.competition_id" />
 <input type="hidden" id="participant_id" value="@Model.id" />
-
 <div class="grid-7">
     <p>
         Rating: <span id="likes">@Model.likes</span> &nbsp;&nbsp;&nbsp;
-        <button id="like" class="@ViewBag.disabled">I like it</button>
+        <button id="like" class="@ViewBag.disabled">
+            I like it</button>
     </p>
     <div id="comments">
         <form id="write-comment" action="" method="get">
         <fieldset>
-            <legend>Write Comment</legend>
-            <textarea cols="30" rows="3" class="form-grid-7"></textarea>
-            <button class="button-special" type="submit">
-                Write</button>
+            <legend>Написать комментарий</legend>
+            <textarea cols="30" rows="3" class="form-grid-7" id="comment_text"></textarea>
+            <button class="button-special" type="submit" id="add_comment" >
+                Написать</button>
         </fieldset>
         </form>
         <ol class="listreset comments">
-
-            <li>
-                <ul class="listreset meta">
-                    <li><a>Author's name</a></li>
-                    <li>posted on date-goes-here</li>
-                </ul>
-                <div class="body">
-                    <p>
-                        Look at&nbsp;you. You&rsquo;re the whole&nbsp;UX package. We&nbsp;want you. There,
-                        we&nbsp;said&nbsp;it. You want to&nbsp;be&nbsp;part of&nbsp;something great. And
-                        we&rsquo;re great, dammit. Come work with&nbsp;us.</p>
-                </div>
-                <hr/>
-            </li>
-
-            <li>
-                <ul class="listreset meta">
-                    <li><a>Author's name</a></li>
-                    <li>posted on date-goes-here</li>
-                </ul>
-                <div class="body">
-                    <p>
-                        Look at&nbsp;you. You&rsquo;re the whole&nbsp;UX package. We&nbsp;want you. There,
-                        we&nbsp;said&nbsp;it. You want to&nbsp;be&nbsp;part of&nbsp;something great. And
-                        we&rsquo;re great, dammit. Come work with&nbsp;us.</p>
-                </div>
-                <hr/>
-            </li>
-
+            @foreach (var comment in @ViewBag.comments)
+            {
+                <li>
+                    <ul class="listreset meta">
+                        <li>@comment.client().fullname()</li>
+                        <li>posted on @comment.created_at</li>
+                    </ul>
+                    <div class="body">
+                        <p>
+                            @comment.text
+                        </p>
+                    </div>
+                    <hr />
+                </li>    
+            }
         </ol>
     </div>
 </div>
