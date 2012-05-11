@@ -177,4 +177,5 @@ namespace ArtFight.Models
             FROM INFORMATION_SCHEMA.TABLES T 
             Where T.TABLE_NAME = 'EdmMetaData'";
     }
+
 }

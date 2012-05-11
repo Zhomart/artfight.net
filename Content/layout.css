@@ -315,6 +315,7 @@ ol.comments .body .answer-control a {
 .offset {
 	/*margin-left: -60px !important;*/
 }
+
 .full-view .offset {
 	margin-left: 0 !important;
 	visibility: visible !important;

@@ -1,4 +1,4 @@
-﻿@if (ViewBag.is_authorized) {
+@if (ViewBag.is_authorized) {
     if (ViewBag.current_client.role == "admin") {
         <text>
             <li>@Html.ActionLink("Users", "Index", "Admin")</li>
