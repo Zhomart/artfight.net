@@ -108,7 +108,7 @@
         // attributes: space seperated list of attributes to retrieve and remove
         removeAttrs: function (attributes) {
             var result = {},
-            $element = this;
+			$element = this;
             $.each(attributes.split(/\s/), function (index, value) {
                 result[value] = $element.attr(value);
                 $element.removeAttr(value);
@@ -146,13 +146,13 @@
             }
 
             var data = $.validator.normalizeRules(
-        $.extend(
-            {},
-            $.validator.metadataRules(element),
-            $.validator.classRules(element),
-            $.validator.attributeRules(element),
-            $.validator.staticRules(element)
-        ), element);
+		$.extend(
+			{},
+			$.validator.metadataRules(element),
+			$.validator.classRules(element),
+			$.validator.attributeRules(element),
+			$.validator.staticRules(element)
+		), element);
 
             // make sure required is at front
             if (data.required) {
@@ -317,19 +317,19 @@
 
                 function delegate(event) {
                     var validator = $.data(this[0].form, "validator"),
-                    eventType = "on" + event.type.replace(/^validate/, "");
+					eventType = "on" + event.type.replace(/^validate/, "");
                     if (validator.settings[eventType]) {
                         validator.settings[eventType].call(validator, this[0], event);
                     }
                 }
                 $(this.currentForm)
-                .validateDelegate("[type='text'], [type='password'], [type='file'], select, textarea, " +
-                    "[type='number'], [type='search'] ,[type='tel'], [type='url'], " +
-                    "[type='email'], [type='datetime'], [type='date'], [type='month'], " +
-                    "[type='week'], [type='time'], [type='datetime-local'], " +
-                    "[type='range'], [type='color'] ",
-                    "focusin focusout keyup", delegate)
-                .validateDelegate("[type='radio'], [type='checkbox'], select, option", "click", delegate);
+				.validateDelegate("[type='text'], [type='password'], [type='file'], select, textarea, " +
+					"[type='number'], [type='search'] ,[type='tel'], [type='url'], " +
+					"[type='email'], [type='datetime'], [type='date'], [type='month'], " +
+					"[type='week'], [type='time'], [type='datetime-local'], " +
+					"[type='range'], [type='color'] ",
+					"focusin focusout keyup", delegate)
+				.validateDelegate("[type='radio'], [type='checkbox'], select, option", "click", delegate);
 
                 if (this.settings.invalidHandler) {
                     $(this.currentForm).bind("invalid-form.validate", this.settings.invalidHandler);
@@ -440,10 +440,10 @@
                 if (this.settings.focusInvalid) {
                     try {
                         $(this.findLastActive() || this.errorList.length && this.errorList[0].element || [])
-                    .filter(":visible")
-                    .focus()
+					.filter(":visible")
+					.focus()
                         // manually trigger focusin event; without it, focusin handler isn't called, findLastActive won't have anything to find
-                    .trigger("focusin");
+					.trigger("focusin");
                     } catch (e) {
                         // ignore IE throwing errors when focusing hidden elements
                     }
@@ -459,26 +459,26 @@
 
             elements: function () {
                 var validator = this,
-                rulesCache = {};
+				rulesCache = {};
 
                 // select all valid inputs inside the form (no submit or reset buttons)
                 return $(this.currentForm)
-            .find("input, select, textarea")
-            .not(":submit, :reset, :image, [disabled]")
-            .not(this.settings.ignore)
-            .filter(function () {
-                if (!this.name && validator.settings.debug && window.console) {
-                    console.error("%o has no name assigned", this);
-                }
+			.find("input, select, textarea")
+			.not(":submit, :reset, :image, [disabled]")
+			.not(this.settings.ignore)
+			.filter(function () {
+			    if (!this.name && validator.settings.debug && window.console) {
+			        console.error("%o has no name assigned", this);
+			    }
 
-                // select only the first element for each name, and only those with rules specified
-                if (this.name in rulesCache || !validator.objectLength($(this).rules())) {
-                    return false;
-                }
+			    // select only the first element for each name, and only those with rules specified
+			    if (this.name in rulesCache || !validator.objectLength($(this).rules())) {
+			        return false;
+			    }
 
-                rulesCache[this.name] = true;
-                return true;
-            });
+			    rulesCache[this.name] = true;
+			    return true;
+			});
             },
 
             clean: function (selector) {
@@ -592,18 +592,18 @@
 
             defaultMessage: function (element, method) {
                 return this.findDefined(
-                this.customMessage(element.name, method),
-                this.customMetaMessage(element, method),
+				this.customMessage(element.name, method),
+				this.customMetaMessage(element, method),
                 // title is never undefined, so handle empty string as undefined
-                !this.settings.ignoreTitle && element.title || undefined,
-                $.validator.messages[method],
-                "<strong>Warning: No message defined for " + element.name + "</strong>"
-            );
+				!this.settings.ignoreTitle && element.title || undefined,
+				$.validator.messages[method],
+				"<strong>Warning: No message defined for " + element.name + "</strong>"
+			);
             },
 
             formatAndAdd: function (element, rule) {
                 var message = this.defaultMessage(element, rule.method),
-                theregex = /\$?\{(\d+)\}/g;
+				theregex = /\$?\{(\d+)\}/g;
                 if (typeof message === "function") {
                     message = message.call(this, rule.parameters, element);
                 } else if (theregex.test(message)) {
@@ -675,9 +675,9 @@
                 } else {
                     // create label
                     label = $("<" + this.settings.errorElement + "/>")
-                    .attr({ "for": this.idOrName(element), generated: true })
-                    .addClass(this.settings.errorClass)
-                    .html(message || "");
+					.attr({ "for": this.idOrName(element), generated: true })
+					.addClass(this.settings.errorClass)
+					.html(message || "");
                     if (this.settings.wrapper) {
                         // make sure the element is visible, even in IE
                         // actually showing the wrapped element is handled elsewhere
@@ -876,8 +876,8 @@
 
             var meta = $.data(element.form, 'validator').settings.meta;
             return meta ?
-            $(element).metadata()[meta] :
-            $(element).metadata();
+			$(element).metadata()[meta] :
+			$(element).metadata();
         },
 
         staticRules: function (element) {
@@ -1125,8 +1125,8 @@
                     return false;
                 }
                 var nCheck = 0,
-                nDigit = 0,
-                bEven = false;
+				nDigit = 0,
+				bEven = false;
 
                 value = value.replace(/\D/g, "");
 
@@ -1191,7 +1191,7 @@
         var ajax = $.ajax;
         $.ajax = function (settings) {
             var mode = ("mode" in settings ? settings : $.ajaxSettings).mode,
-                port = ("port" in settings ? settings : $.ajaxSettings).port;
+				port = ("port" in settings ? settings : $.ajaxSettings).port;
             if (mode === "abort") {
                 if (pendingRequests[port]) {
                     pendingRequests[port].abort();

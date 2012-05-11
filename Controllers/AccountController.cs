@@ -32,6 +32,7 @@ namespace ArtFight.Controllers
                 if (client != null)
                 {
                     Response.SetCookie(new HttpCookie("current_user", client.username));
+
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {

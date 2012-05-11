@@ -27,7 +27,6 @@ namespace ArtFight.Models
         [ScaffoldColumn(false)]
         public string owner_username { get; set; }
 
-
         public List<Participant> participants()
         {
             var db = new Context();
@@ -56,7 +55,6 @@ namespace ArtFight.Models
             db.SaveChanges();
         }
 
-
         public bool participating(string username) 
         {
             var db = new Context();
@@ -64,7 +62,7 @@ namespace ArtFight.Models
                      where s.competition_id == this.id
                      where s.username == username
                      select s;
-
+            //throw new Exception(username);
             return ps.Count() > 0;
         }
 
@@ -74,6 +72,5 @@ namespace ArtFight.Models
 
         [NotMapped]
         public string status_name { get { return statuses[status]; } }
-
     }
 }
